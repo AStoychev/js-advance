@@ -1,1 +1,1 @@
-To test any of the tasks you need to installspme packages using: npm install
+To test any of the tasks you need to install some packages using: npm install
