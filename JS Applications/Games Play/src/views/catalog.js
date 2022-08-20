@@ -1,0 +1,26 @@
+import { getAllGames } from "../api/games.js";
+import { html } from "../lib.js";
+
+const catalogTemplate = (games) => html`
+<section id="catalog-page">
+            <h1>All Games</h1>
+            ${games.length == 0
+            ? html`<h3 class="no-articles">No articles yet</h3>`
+            : games.map(gameCard)}
+        </section>`;
+
+const gameCard = (games) => html`
+<div class="allGames">
+                <div class="allGames-info">
+                    <img src=${games.imageUrl}>
+                    <h6>${games.category}</h6>
+                    <h2>${games.title}</h2>
+                    <a href="/catalog/${games._id}" class="details-button">Details</a>
+                    </div>
+                </div>`
+
+export async function catalogView(ctx) {
+    const games = await getAllGames();
+
+    ctx.render(catalogTemplate(games));
+}
